@@ -12,7 +12,7 @@
         [InlineData(null)]
         public void PcnMethodIsAuthorisedTestForTrue(PcnParts.PcnDeterminedType? pcnDeterminedType)
         {
-            PcnParts pcn = new PcnParts()
+            PcnParts? pcn = new ()
             {
                 PcnDetermined = pcnDeterminedType,
                 PcnNumericalValue = 2.0
@@ -24,7 +24,7 @@
         [Fact]
         public void PcnMethodIsAuthorisedTestForFalse()
         {
-            PcnParts pcn = new PcnParts()
+            PcnParts? pcn = new ()
             {
                 PcnDetermined = PcnDeterminedType.U,
                 PcnNumericalValue = 2.0

@@ -6,13 +6,13 @@
     using static Models.PcnParts;
     public class TyrePresureCheck
     {
-        public static bool AircraftTyrePresureIsWithinLimits(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double? actualAircraftWeighInKg)
+        public static bool AircraftTyrePresureIsWithinLimits(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double? actualAircraftWeighInKn)
         {
             try
             {
                 var aircraftTyrePresure = Math.Abs(aircraftacn.TirePressureMpa.GetValueOrDefault(0.0));
-                actualAircraftWeighInKg.Should().NotBeNull();
-                var aircraftWeight = actualAircraftWeighInKg.GetValueOrDefault(0.0);
+                actualAircraftWeighInKn.Should().NotBeNull();
+                var aircraftWeight = actualAircraftWeighInKn.GetValueOrDefault(0.0);
                 var pcnTyrePresure = 0.5;
                 switch (pcnParts.MaximumTyrePresure)
                 {

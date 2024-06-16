@@ -11,12 +11,14 @@ namespace DiggerFlight.PcnAcnCalculator
 
     public class Main
     {
-        public static string GetAircraftInvalidTaxiWaysInKg(string ICAO, double? aircraftWeightInKg, string simbriefAircraftId)
+        public static string GetAircraftInvalidTaxiWaysInKg(string ICAO, string aircraftWeight, string simbriefAircraftId)
         {
             try
             {
                 var aircraftAcns = AircraftAcns.GetAircraftAcns();
                 var airfieldOps = AirfieldOperations.GetAirfieldOperations();
+
+                var aircraftWeightInKn = UnitsConverter.GetAircraftWeighInKn(aircraftWeight);
 
                 var aircraftAcn = aircraftAcns.AircraftAcn.Where(t => t.SimbriefId.ToUpper() == simbriefAircraftId.ToUpper()).FirstOrDefault();
                 var airfield = airfieldOps.Airfields.Where(t => t.Icao.ToUpper() == ICAO.ToUpper()).FirstOrDefault();
@@ -26,7 +28,7 @@ namespace DiggerFlight.PcnAcnCalculator
                 foreach (var infrastructureElement in pcnPart)
                 {
                     PcnParts pcnParts = infrastructureElement;
-                    var isInfrastructureElementValid = TyrePresureCheck.AircraftTyrePresureIsWithinLimits(ref pcnParts, ref aircraftAcn, ref aircraftWeightInKg);
+                    var isInfrastructureElementValid = TyrePresureCheck.AircraftTyrePresureIsWithinLimits(ref pcnParts, ref aircraftAcn, ref aircraftWeightInKn);
                     if (!isInfrastructureElementValid)
                     {
                         invalidTaxiWays.Add(infrastructureElement.InfrastructureName);

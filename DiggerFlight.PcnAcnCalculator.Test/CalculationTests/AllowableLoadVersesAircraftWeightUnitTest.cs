@@ -51,14 +51,14 @@
                                                double expectedResult
                                                )
         {
-            var loadOrActualAcnFormula = 0.0;
+            double? loadOrActualAcnFormula = 0.0;
             try
             {
-                loadOrActualAcnFormula = (double)AllowableLoadVersesAircraftWeight.LoadOrActualAcnFormula(aircraftMinWeightOrAcnMin,
-                                                                                                          aircraftMaxWeightOrAcnMax,
-                                                                                                          pcnOrmValue,
-                                                                                                          acnMinOrmValueMin,
-                                                                                                          acnMaxOrmValueMax);
+                loadOrActualAcnFormula = AllowableLoadVersesAircraftWeight.LoadOrActualAcnFormula(aircraftMinWeightOrAcnMin,
+                                                                                                  aircraftMaxWeightOrAcnMax,
+                                                                                                  pcnOrmValue,
+                                                                                                  acnMinOrmValueMin,
+                                                                                                  acnMaxOrmValueMax);
                 loadOrActualAcnFormula.Should().Be(expectedResult);
             }
             catch (Exception e)

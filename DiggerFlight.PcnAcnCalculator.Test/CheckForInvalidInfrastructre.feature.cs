@@ -86,21 +86,21 @@ namespace DiggerFlight.PcnAcnCalculator.Test
         [Xunit.SkippableTheoryAttribute(DisplayName="Check For Invalid Taxiways only when valid data is available")]
         [Xunit.TraitAttribute("FeatureTitle", "CheckForInvalidInfrastructre")]
         [Xunit.TraitAttribute("Description", "Check For Invalid Taxiways only when valid data is available")]
-        [Xunit.InlineDataAttribute("Valid data", "A320", "EGNJ", "4400kgs", "H,G,C,D", new string[0])]
+        [Xunit.InlineDataAttribute("Valid data", "A320", "EGNJ", "44000kgs", "H,G,C,D", new string[0])]
         [Xunit.InlineDataAttribute("Valid data no invalid Taxiways", "C152", "EGNJ", "2499kgs", "", new string[0])]
         [Xunit.InlineDataAttribute("Valid data invalid Taxiways", "C152", "EGNJ", "2501kgs", "TAXI_G,TAXI_H", new string[0])]
-        [Xunit.InlineDataAttribute("Invalid data - aircraft", "B747", "EGNJ", "4400kgs", "", new string[0])]
-        [Xunit.InlineDataAttribute("Invalid data - airfield", "A320", "EGKK", "4400kgs", "", new string[0])]
+        [Xunit.InlineDataAttribute("Invalid data - aircraft", "B747", "EGNJ", "44000kgs", "", new string[0])]
+        [Xunit.InlineDataAttribute("Invalid data - airfield", "A320", "EGKK", "44000kgs", "", new string[0])]
         [Xunit.InlineDataAttribute("Invalid data - weight", "A320", "EGNJ", "", "", new string[0])]
         [Xunit.InlineDataAttribute("Invalid data - all", "B747", "EGKK", "", "", new string[0])]
-        public void CheckForInvalidTaxiwaysOnlyWhenValidDataIsAvailable(string scenario, string aircraft, string icao, string weight, string taxiwaysAreInvalid, string[] exampleTags)
+        public void CheckForInvalidTaxiwaysOnlyWhenValidDataIsAvailable(string scenario, string aircraft, string icao, string mass, string taxiwaysAreInvalid, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("scenario", scenario);
             argumentsOfScenario.Add("aircraft", aircraft);
             argumentsOfScenario.Add("icao", icao);
-            argumentsOfScenario.Add("weight", weight);
+            argumentsOfScenario.Add("mass", mass);
             argumentsOfScenario.Add("taxiways are invalid", taxiwaysAreInvalid);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check For Invalid Taxiways only when valid data is available", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given(string.Format("that I am an \'{0}\' at \'{1}\' and \'{2}\'", aircraft, icao, weight), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("that I am an \'{0}\' at \'{1}\' and \'{2}\'", aircraft, icao, mass), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.When("I ask for taxi", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

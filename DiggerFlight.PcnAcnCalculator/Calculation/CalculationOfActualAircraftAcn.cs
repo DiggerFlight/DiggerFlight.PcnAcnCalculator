@@ -6,11 +6,11 @@
     using static Models.PcnParts;
     public class CalculationOfActualAircraftAcn
     {
-        public static bool IsActualAircraftAcnAllowed(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double actualAircraftWeighInKg)
+        public static bool IsActualAircraftAcnAllowed(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double actualAircraftWeighInKn)
         {
             if (pcnParts.NonDecodedPcnValue.Contains("/"))
             {
-                var actualAircraftAcn = GetActualAircraftAcn(ref pcnParts, ref aircraftacn, ref actualAircraftWeighInKg);
+                var actualAircraftAcn = GetActualAircraftAcn(ref pcnParts, ref aircraftacn, ref actualAircraftWeighInKn);
                 var pcnToCheckAgainst = pcnParts.PcnNumericalValue;
                 var acnMaxValue = GetAcnMaxMinValues(ref pcnParts, ref aircraftacn, true);
                 var acnMinValue = GetAcnMaxMinValues(ref pcnParts, ref aircraftacn, false);
@@ -28,7 +28,7 @@
                     }
                 }
                 return PcnMethod.PcnMethodIsAuthorised(ref pcnParts,
-                                                       actualAircraftWeighInKg,
+                                                       actualAircraftWeighInKn,
                                                        aircraftacn.MinWeightValues.WeightKn,
                                                        aircraftacn.MaxWeightValues.WeightKn,
                                                        acnMinValue, acnMaxValue
@@ -40,8 +40,8 @@
                 Match match = Regex.Match(pcnParts.NonDecodedPcnValue, pattern);
                 if (match.Success)
                 {
-                    var maxWeigh = Math.Abs(Convert.ToDouble(match.Value));
-                    if (actualAircraftWeighInKg <= maxWeigh) { return true; }
+                    var maxWeigh = Math.Abs(UnitsConverter.GetKiloNewtons(Convert.ToDouble(match.Value)));
+                    if (actualAircraftWeighInKn <= maxWeigh) { return true; }
                     return false;
                 }
                 //Not valid PCN data revert to default
@@ -49,7 +49,7 @@
             }
         }
 
-        public static double? GetActualAircraftAcn(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double actualAircraftWeighInKg)
+        public static double? GetActualAircraftAcn(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double actualAircraftWeighInKn)
         {
             try
             {
@@ -60,7 +60,7 @@
 
                 var actualAircraftAcn = AllowableLoadVersesAircraftWeight.LoadOrActualAcnFormula(aircraftMinWeight,
                                                                                                  aircraftMaxWeight,
-                                                                                                 actualAircraftWeighInKg,
+                                                                                                 actualAircraftWeighInKn,
                                                                                                  acnMinValue,
                                                                                                  acnMaxValue
                                                                                                  );

@@ -28,8 +28,8 @@
         [InlineData(null, null, true)]
         public void TestAircraftTyrePresureIsWithinLimits(double? aircraftTyrePresure, PcnParts.MaximumTyrePresureType? pcnMaximumTyrePresure, bool expectedResult)
         {
-            PcnParts pcnParts = new PcnParts() { MaximumTyrePresure = pcnMaximumTyrePresure};
-            Aircraftacn aircraftacn = new Aircraftacn() { TirePressureMpa = aircraftTyrePresure };
+            PcnParts? pcnParts = new PcnParts() { MaximumTyrePresure = pcnMaximumTyrePresure};
+            Aircraftacn? aircraftacn = new Aircraftacn() { TirePressureMpa = aircraftTyrePresure };
             double? actualAircraftWeighInKg = 1.0;
             var tyrePresureResult = TyrePresureCheck.AircraftTyrePresureIsWithinLimits(ref pcnParts, ref aircraftacn, ref actualAircraftWeighInKg);
             tyrePresureResult.Should().Be(expectedResult);

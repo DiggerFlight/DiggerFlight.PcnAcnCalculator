@@ -1,27 +1,21 @@
-﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace DiggerFlight.PcnAcnCalculator.Test
+﻿namespace DiggerFlight.PcnAcnCalculator.Test
 {
+    using FluentAssertions;
+    using TechTalk.SpecFlow;
+
     [Binding]
     public class CheckForInvalidInfrastructureSteps
     {
-        private string _aircraft;
-        private string _icao;
-        private string _weight;
+        private string? _aircraft;
+        private string? _icao;
+        private string? _mass;
 
 	    [Given(@"^that I am an '(.*)' at '(.*)' and '(.*)'$")]
-        public void GivenThatIamAnAtAnd(string aircraft, string icao, string weight)
+        public void GivenThatIamAnAtAnd(string aircraft, string icao, string mass)
         {
             _aircraft = aircraft;
             _icao = icao;
-            _weight = weight;
+            _mass = mass;
         }
 
         [When(@"^I ask for taxi")]
@@ -33,9 +27,7 @@ namespace DiggerFlight.PcnAcnCalculator.Test
         [Then(@"^If data is valid I want to know what '(.*)'$")]
         public void WhenIfDataIsValidIwantToKnowWhat(string taxiwaysAreInvalid)
         {
-            double? weight = null;
-            if (!string.IsNullOrEmpty(_weight)) weight = Convert.ToDouble(_weight.Replace("kgs",""));
-            var result = Main.GetAircraftInvalidTaxiWaysInKg(_icao, weight, _aircraft);
+            var result = Main.GetAircraftInvalidTaxiWaysInKg(_icao, _mass, _aircraft);
             result.Should().Be(taxiwaysAreInvalid);
         }
     }
