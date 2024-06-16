@@ -14,6 +14,7 @@ The purpose of this project demostration is:
 With the following Test results:
 ![Test Results](TestResults.PNG)
 
+The Data for the Airfield is available on all the AIPs
 And as a final word the Airfield Operation json needs to look like (include) this:
 ```json
 {
