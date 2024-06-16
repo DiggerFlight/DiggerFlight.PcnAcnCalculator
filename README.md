@@ -5,6 +5,6 @@ The code for the calculation was based upon the specifications derived in https:
 The ACN data was sourced from with thanks from https://skybrary.aero/sites/default/files/bookshelf/4422.pdf
 
 The purpose of this project is:
-![Features](FeatureFile.png)
+![Features](FeatureFile.PNG)
 With the following Test results:
-![Test Results](TestResults.png)
+![Test Results](TestResults.PNG)
