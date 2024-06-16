@@ -1,0 +1,38 @@
+{
+  "airfields": [
+    {
+      "ICAO": "EGNJ",
+      "infrastructure": [
+        {
+          "name": "TAXI_A",
+          "pcnValue": "55/F/B/X/U"
+        },
+        {
+          "name": "TAXI_B",
+          "pcnValue": "20/F/B/X/U"
+        },
+        {
+          "name": "TAXI_C",
+          "pcnValue": "30/F/B/X/U"
+        },
+        {
+          "name": "TAXI_D",
+          "pcnValue": "29/F/B/X/U"
+        },
+        {
+          "name": "TAXI_E",
+          "pcnValue": "20/R/B/X/U"
+        },
+        {
+          "name": "TAXI_G",
+          "pcnValue": "Up To 2500kg"
+        },
+        {
+          "name": "TAXI_H",
+          "pcnValue": "Up To 2500kg"
+        }
+      ]
+    },
+    {}
+  ]
+}

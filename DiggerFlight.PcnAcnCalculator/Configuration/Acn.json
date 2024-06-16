@@ -1,0 +1,72 @@
+{
+  "aircraftAcns": [
+    {
+      "aircraftName": "A320-100",
+      "simbriefId": "A320",
+      "tirePressureMpa": 1.21,
+      "maxWeightValues": {
+        "weightKn": 667,
+        "flexSubgradeHigh": 35,
+        "flexSubgradeMedium": 36,
+        "flexSubgradeLow": 40,
+        "flexSubgradeVeryLow": 46,
+        "rigidSubgradeHigh": 38,
+        "rigidSubgradeMedium": 41,
+        "rigidSubgradeLow": 43,
+        "rigidSubgradeVeryLow": 45
+      },
+      "minWeightValues": {
+        "weightKn": 390,
+        "flexSubgradeHigh": 19,
+        "flexSubgradeMedium": 19,
+        "flexSubgradeLow": 21,
+        "flexSubgradeVeryLow": 24,
+        "rigidSubgradeHigh": 30,
+        "rigidSubgradeMedium": 22,
+        "rigidSubgradeLow": 25,
+        "rigidSubgradeVeryLow": 25
+      }
+    },
+    {
+      "aircraftName": "B707-120, 120B",
+      "simbriefId": "B707",
+      "perceentageLoadOnOneMainGear": 46.7,
+      "tirePressureMpa": 1.17,
+      "maxWeightValues": {
+        "weightKn": 1150,
+        "flexSubgradeHigh": 32,
+        "flexSubgradeMedium": 35,
+        "flexSubgradeLow": 42,
+        "flexSubgradeVeryLow": 55,
+        "rigidSubgradeHigh": 28,
+        "rigidSubgradeMedium": 34,
+        "rigidSubgradeLow": 40,
+        "rigidSubgradeVeryLow": 47,
+        "StOverSb": 86
+      },
+      "minWeightValues": {
+        "weightKn": 700,
+        "flexSubgradeHigh": 17,
+        "flexSubgradeMedium": 18,
+        "flexSubgradeLow": 21,
+        "flexSubgradeVeryLow": 27,
+        "rigidSubgradeHigh": 16,
+        "rigidSubgradeMedium": 17,
+        "rigidSubgradeLow": 20,
+        "rigidSubgradeVeryLow": 24,
+        "StOverSb": 142
+      }
+    },
+    {
+      "aircraftName": "Cessna 152",
+      "simbriefId": "C152",
+      "tirePressureMpa": 0.35,
+      "maxWeightValues": {
+        "weightKn": 8
+      },
+      "minWeightValues": {
+        "weightKn": 5
+      }
+    }
+  ]
+}
