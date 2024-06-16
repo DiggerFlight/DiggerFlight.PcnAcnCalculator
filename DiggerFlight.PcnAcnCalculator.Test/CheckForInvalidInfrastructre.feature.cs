@@ -86,7 +86,7 @@ namespace DiggerFlight.PcnAcnCalculator.Test
         [Xunit.SkippableTheoryAttribute(DisplayName="Check For Invalid Taxiways only when valid data is available")]
         [Xunit.TraitAttribute("FeatureTitle", "CheckForInvalidInfrastructre")]
         [Xunit.TraitAttribute("Description", "Check For Invalid Taxiways only when valid data is available")]
-        [Xunit.InlineDataAttribute("Valid data", "A320", "EGNJ", "44000kgs", "H,G,C,D", new string[0])]
+        [Xunit.InlineDataAttribute("Valid data", "A320", "EGNJ", "44000kgs", "TAXI_B,TAXI_E,TAXI_G,TAXI_H", new string[0])]
         [Xunit.InlineDataAttribute("Valid data no invalid Taxiways", "C152", "EGNJ", "2499kgs", "", new string[0])]
         [Xunit.InlineDataAttribute("Valid data invalid Taxiways", "C152", "EGNJ", "2501kgs", "TAXI_G,TAXI_H", new string[0])]
         [Xunit.InlineDataAttribute("Invalid data - aircraft", "B747", "EGNJ", "44000kgs", "", new string[0])]

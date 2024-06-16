@@ -7,21 +7,27 @@ using System.Threading.Tasks;
 namespace DiggerFlight.PcnAcnCalculator
 {
     using DiggerFlight.PcnAcnCalculator.Calculation;
+    using FluentAssertions;
     using Models;
+    using FileManagement;
 
     public class Main
     {
-        public static string GetAircraftInvalidTaxiWaysInKg(string ICAO, string aircraftWeight, string simbriefAircraftId)
+        public static string GetAircraftInvalidTaxiWaysInKg(string icao, string aircraftWeight, string simbriefAircraftId)
         {
             try
             {
+                icao.Should().NotBeNullOrEmpty();
+                aircraftWeight.Should().NotBeNullOrEmpty();
+                simbriefAircraftId.Should().NotBeNullOrEmpty();
+
                 var aircraftAcns = AircraftAcns.GetAircraftAcns();
                 var airfieldOps = AirfieldOperations.GetAirfieldOperations();
 
                 var aircraftWeightInKn = UnitsConverter.GetAircraftWeighInKn(aircraftWeight);
 
                 var aircraftAcn = aircraftAcns.AircraftAcn.Where(t => t.SimbriefId.ToUpper() == simbriefAircraftId.ToUpper()).FirstOrDefault();
-                var airfield = airfieldOps.Airfields.Where(t => t.Icao.ToUpper() == ICAO.ToUpper()).FirstOrDefault();
+                var airfield = airfieldOps.Airfields.Where(t => t.Icao.ToUpper() == icao.ToUpper()).FirstOrDefault();
                 var pcnPart = PcnParts.GetPcnParts(airfield.Infrastructure);
 
                 List<string> invalidTaxiWays = new List<string>();

@@ -8,6 +8,7 @@
     {
         public static bool IsActualAircraftAcnAllowed(ref PcnParts? pcnParts, ref Aircraftacn? aircraftacn, ref double actualAircraftWeighInKn)
         {
+            //Log.Information("PcnValue: " + pcnParts.NonDecodedPcnValue);
             if (pcnParts.NonDecodedPcnValue.Contains("/"))
             {
                 var actualAircraftAcn = GetActualAircraftAcn(ref pcnParts, ref aircraftacn, ref actualAircraftWeighInKn);
@@ -36,11 +37,16 @@
             }
             else
             {
-                var pattern = @"\d"; // This pattern will match the decimal
+                var pattern = @"\d+"; // This pattern will match all the decimal
                 Match match = Regex.Match(pcnParts.NonDecodedPcnValue, pattern);
                 if (match.Success)
                 {
-                    var maxWeigh = Math.Abs(UnitsConverter.GetKiloNewtons(Convert.ToDouble(match.Value)));
+                    var maxMass = Convert.ToDouble(match.Value);
+                    if (pcnParts.NonDecodedPcnValue.ToUpper().Contains("LBS"))
+                    {
+                        maxMass = UnitsConverter.GetKilogrames(maxMass);
+                    }
+                    var maxWeigh = Math.Abs(UnitsConverter.GetKiloNewtons(maxMass));
                     if (actualAircraftWeighInKn <= maxWeigh) { return true; }
                     return false;
                 }
@@ -62,7 +68,8 @@
                                                                                                  aircraftMaxWeight,
                                                                                                  actualAircraftWeighInKn,
                                                                                                  acnMinValue,
-                                                                                                 acnMaxValue
+                                                                                                 acnMaxValue, 
+                                                                                                 true
                                                                                                  );
                 return actualAircraftAcn;
             }

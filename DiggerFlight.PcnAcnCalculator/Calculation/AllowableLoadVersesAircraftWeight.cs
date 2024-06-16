@@ -48,7 +48,8 @@
                                                      double? aircraftMaxWeightOrAcnMax,
                                                      double? pcnOrmValue,
                                                      double? acnMinOrmValueMin,
-                                                     double? acnMaxOrmValueMax
+                                                     double? acnMaxOrmValueMax,
+                                                     bool isAcnCalculation = false
                                                      )
         {
             try
@@ -71,10 +72,21 @@
             acnMinOrmValueMin = Math.Abs(acnMinOrmValueMin.GetValueOrDefault(1.0));
             acnMaxOrmValueMax = Math.Abs(acnMaxOrmValueMax.GetValueOrDefault(3.0));
             //Load = 2.5
+            //Log.Information("aircraftMinWeightOrAcnMin: " + aircraftMinWeightOrAcnMin);
+            //Log.Information("aircraftMaxWeightOrAcnMax: " + aircraftMaxWeightOrAcnMax);
+            //Log.Information("pcnOrmValue: " + pcnOrmValue);
+            //Log.Information("acnMinOrmValueMin: " + acnMinOrmValueMin);
+            //Log.Information("acnMaxOrmValueMax: " + acnMaxOrmValueMax);
 
             var fraction = (pcnOrmValue - acnMinOrmValueMin) / (acnMaxOrmValueMax - acnMinOrmValueMin);
             var loadOrActualAcnFormula = aircraftMinWeightOrAcnMin + ((aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin) * fraction);
 
+            if (isAcnCalculation)
+            {
+                fraction = (pcnOrmValue - aircraftMinWeightOrAcnMin) / (aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin);
+                loadOrActualAcnFormula = acnMinOrmValueMin + ((acnMaxOrmValueMax - acnMinOrmValueMin) * fraction);
+            }
+            //Log.Information("loadOrActualAcnFormula: " + loadOrActualAcnFormula);
             return loadOrActualAcnFormula;
         }
     }
