@@ -1,4 +1,4 @@
-﻿namespace DiggerFlight.PcnAcnCalculator.Calculation
+namespace DiggerFlight.PcnAcnCalculator.Calculation
 {
     using FluentAssertions;
     using System;
@@ -80,7 +80,7 @@
 
             var fraction = (pcnOrmValue - acnMinOrmValueMin) / (acnMaxOrmValueMax - acnMinOrmValueMin);
             var loadOrActualAcnFormula = aircraftMinWeightOrAcnMin + ((aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin) * fraction);
-
+            //Sub optimal to properly fixed ASSP
             if (isAcnCalculation)
             {
                 fraction = (pcnOrmValue - aircraftMinWeightOrAcnMin) / (aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin);
