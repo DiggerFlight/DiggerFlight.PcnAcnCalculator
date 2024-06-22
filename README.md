@@ -6,7 +6,7 @@ The ACN data was sourced with thanks from https://skybrary.aero/sites/default/fi
 
 Only a couple of aircraft have been added for the purposes of testing.
 
-Though the tests only cover kgs there is an untested lbs to kgs unit conversion to support our non SI unit countries.
+Tests now cover kg/kgs and lb/lbs for the kgs unit conversion to support our non SI unit countries.
 
 The purpose of this project demostration is:
 ![Features](FeatureFile.PNG)

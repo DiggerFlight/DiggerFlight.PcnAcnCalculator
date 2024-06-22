@@ -8,14 +8,14 @@
         {
             var weightInKn = 0.0;
             if (string.IsNullOrWhiteSpace(mass)) return weightInKn;
-            if (mass.ToUpper().Contains("LBS"))
+            if (mass.ToUpper().Contains("LB"))
             {
-                mass = mass.ToUpper().Replace("LBS", "").Trim();
+                mass = mass.ToUpper().Replace("LBS", "").Replace("LB", "").Trim();
                 weightInKn = GetKiloNewtons(GetKilogrames(Convert.ToDouble(mass)));
             }
-            else if ((mass.ToUpper().Contains("KGS")))
+            else if ((mass.ToUpper().Contains("KG")))
             {
-                mass = mass.ToUpper().Replace("KGS", "").Trim();
+                mass = mass.ToUpper().Replace("KGS", "").Replace("KG", "").Trim();
                 weightInKn = GetKiloNewtons(Convert.ToDouble(mass));
             }
             else

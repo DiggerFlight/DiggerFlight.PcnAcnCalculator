@@ -64,12 +64,11 @@
                 double? aircraftMaxWeight = aircraftacn.MaxWeightValues.WeightKn;
                 double? aircraftMinWeight = aircraftacn.MinWeightValues.WeightKn;
 
-                var actualAircraftAcn = AllowableLoadVersesAircraftWeight.LoadOrActualAcnFormula(aircraftMinWeight,
-                                                                                                 aircraftMaxWeight,
-                                                                                                 actualAircraftWeighInKn,
-                                                                                                 acnMinValue,
+                var actualAircraftAcn = AllowableLoadVersesAircraftWeight.LoadOrActualAcnFormula(acnMinValue,
                                                                                                  acnMaxValue, 
-                                                                                                 true
+                                                                                                 actualAircraftWeighInKn,
+                                                                                                 aircraftMinWeight,
+                                                                                                 aircraftMaxWeight
                                                                                                  );
                 return actualAircraftAcn;
             }

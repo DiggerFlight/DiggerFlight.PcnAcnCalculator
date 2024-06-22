@@ -10,6 +10,9 @@ Scenario Outline: Check For Invalid Taxiways only when valid data is available
 Scenarios: 
  | scenario                       | aircraft | icao | mass     | taxiways are invalid        |
  | Valid data                     | A320     | EGNJ | 44000kgs | TAXI_B,TAXI_E,TAXI_G,TAXI_H |
+ | Valid data                     | A320     | EGNJ | 44000kg  | TAXI_B,TAXI_E,TAXI_G,TAXI_H |
+ | Valid data                     | A320     | EGNJ | 97000lbs | TAXI_B,TAXI_E,TAXI_G,TAXI_H |
+ | Valid data                     | A320     | EGNJ | 88000lb  | TAXI_E,TAXI_G,TAXI_H        |
  | Valid data no invalid Taxiways | C152     | EGNJ | 2499kgs  |                             |
  | Valid data invalid Taxiways    | C152     | EGNJ | 2501kgs  | TAXI_G,TAXI_H               |
  | Invalid data - aircraft        | B747     | EGNJ | 44000kgs |                             |

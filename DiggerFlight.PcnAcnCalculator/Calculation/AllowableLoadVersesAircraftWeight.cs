@@ -44,21 +44,20 @@ namespace DiggerFlight.PcnAcnCalculator.Calculation
             return true;
         }
 
-        public static double? LoadOrActualAcnFormula(double? aircraftMinWeightOrAcnMin,
-                                                     double? aircraftMaxWeightOrAcnMax,
-                                                     double? pcnOrmValue,
-                                                     double? acnMinOrmValueMin,
-                                                     double? acnMaxOrmValueMax,
-                                                     bool isAcnCalculation = false
+        public static double? LoadOrActualAcnFormula(double? equationMinValue,
+                                                     double? equationMaxValue,
+                                                     double? fractionValue,
+                                                     double? fractionMinValue,
+                                                     double? fractionMaxValue
                                                      )
         {
             try
             {
-                aircraftMinWeightOrAcnMin.Should().NotBeNull();
-                aircraftMaxWeightOrAcnMax.Should().NotBeNull();
-                pcnOrmValue.Should().NotBeNull();
-                acnMinOrmValueMin.Should().NotBeNull();
-                acnMaxOrmValueMax.Should().NotBeNull();
+                equationMinValue.Should().NotBeNull();
+                equationMaxValue.Should().NotBeNull();
+                fractionValue.Should().NotBeNull();
+                fractionMinValue.Should().NotBeNull();
+                fractionMaxValue.Should().NotBeNull();
             }
             catch
             {
@@ -66,11 +65,11 @@ namespace DiggerFlight.PcnAcnCalculator.Calculation
             }
 
             //Defaults won't be triggered just included to help analyse equation but need to ensure positive values.
-            aircraftMinWeightOrAcnMin = Math.Abs(aircraftMinWeightOrAcnMin.GetValueOrDefault(1.0));
-            aircraftMaxWeightOrAcnMax = Math.Abs(aircraftMaxWeightOrAcnMax.GetValueOrDefault(4.0));
-            pcnOrmValue = Math.Abs(pcnOrmValue.GetValueOrDefault(2.0));
-            acnMinOrmValueMin = Math.Abs(acnMinOrmValueMin.GetValueOrDefault(1.0));
-            acnMaxOrmValueMax = Math.Abs(acnMaxOrmValueMax.GetValueOrDefault(3.0));
+            equationMinValue = Math.Abs(equationMinValue.GetValueOrDefault(1.0));
+            equationMaxValue = Math.Abs(equationMaxValue.GetValueOrDefault(4.0));
+            fractionValue = Math.Abs(fractionValue.GetValueOrDefault(2.0));
+            fractionMinValue = Math.Abs(fractionMinValue.GetValueOrDefault(1.0));
+            fractionMaxValue = Math.Abs(fractionMaxValue.GetValueOrDefault(3.0));
             //Load = 2.5
             //Log.Information("aircraftMinWeightOrAcnMin: " + aircraftMinWeightOrAcnMin);
             //Log.Information("aircraftMaxWeightOrAcnMax: " + aircraftMaxWeightOrAcnMax);
@@ -78,14 +77,9 @@ namespace DiggerFlight.PcnAcnCalculator.Calculation
             //Log.Information("acnMinOrmValueMin: " + acnMinOrmValueMin);
             //Log.Information("acnMaxOrmValueMax: " + acnMaxOrmValueMax);
 
-            var fraction = (pcnOrmValue - acnMinOrmValueMin) / (acnMaxOrmValueMax - acnMinOrmValueMin);
-            var loadOrActualAcnFormula = aircraftMinWeightOrAcnMin + ((aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin) * fraction);
-            //Sub optimal to be properly fixed ASAP
-            if (isAcnCalculation)
-            {
-                fraction = (pcnOrmValue - aircraftMinWeightOrAcnMin) / (aircraftMaxWeightOrAcnMax - aircraftMinWeightOrAcnMin);
-                loadOrActualAcnFormula = acnMinOrmValueMin + ((acnMaxOrmValueMax - acnMinOrmValueMin) * fraction);
-            }
+            var fraction = (fractionValue - fractionMinValue) / (fractionMaxValue - fractionMinValue);
+            var loadOrActualAcnFormula = equationMinValue + ((equationMaxValue - equationMinValue) * fraction);
+
             //Log.Information("loadOrActualAcnFormula: " + loadOrActualAcnFormula);
             return loadOrActualAcnFormula;
         }
