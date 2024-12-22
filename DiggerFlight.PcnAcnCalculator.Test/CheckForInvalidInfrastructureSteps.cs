@@ -1,7 +1,7 @@
 ﻿namespace DiggerFlight.PcnAcnCalculator.Test
 {
     using FluentAssertions;
-    using TechTalk.SpecFlow;
+    using Reqnroll;
 
     [Binding]
     public class CheckForInvalidInfrastructureSteps
